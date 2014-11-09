@@ -4,14 +4,37 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.GridView;
 
 
 public class MainActivity extends Activity {
 
+    ArrayAdapter<String> adapter;
+
+    GridView gridQuizes;
+    Button[] buttons;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.quiz_menu);
+
+        gridQuizes = (GridView) findViewById(R.id.gridQuizes);
+        gridQuizes.setAdapter(new ButtonAdapter(this));
+        /*buttons = new Button[20];
+        for (Button button : buttons) {
+            button.setText("Button");
+            button.setPadding(10, 10, 10, 10);
+        }
+        //gridQuizes.set
+        /*adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        for (int i = 0; i < 80; i++) {
+            adapter.add("dummy data " + i);
+
+        }
+        gridQuizes.setAdapter(adapter);*/
     }
 
 
