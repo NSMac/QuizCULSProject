@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject;
+package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,12 +11,12 @@ import android.widget.GridView;
 /**
  * Created by soukenik on 09/11/14.
  */
-public class ButtonAdapter extends BaseAdapter {
+public class QuizMenuButtonAdapter extends BaseAdapter {
     private Context mContext;
     public String[] filenames;
 
     // Gets the context so it can be used later
-    public ButtonAdapter(Context c) {
+    public QuizMenuButtonAdapter(Context c) {
         mContext = c;
         filenames = new String[]{
                 "Test 1",

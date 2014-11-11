@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject;
+package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,8 +8,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 
+import cz.czu.kit.krejci_soukenik.quizproject.R;
 
-public class MainActivity extends Activity {
+
+public class QuizMenuActivity extends Activity {
 
     ArrayAdapter<String> adapter;
 
@@ -22,7 +24,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.quiz_menu);
 
         gridQuizes = (GridView) findViewById(R.id.gridQuizes);
-        gridQuizes.setAdapter(new ButtonAdapter(this));
+        gridQuizes.setAdapter(new QuizMenuButtonAdapter(this));
         /*buttons = new Button[20];
         for (Button button : buttons) {
             button.setText("Button");
