@@ -2,8 +2,10 @@ package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -38,6 +40,8 @@ public class QuizMenuActivity extends Activity {
         }
         gridQuizes.setAdapter(adapter);*/
     }
+
+
 
 
     @Override

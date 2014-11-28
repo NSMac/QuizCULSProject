@@ -1,7 +1,9 @@
 package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,7 +13,7 @@ import android.widget.GridView;
 /**
  * Created by soukenik on 09/11/14.
  */
-public class QuizMenuButtonAdapter extends BaseAdapter {
+public class QuizMenuButtonAdapter extends BaseAdapter implements View.OnClickListener {
     private Context mContext;
     public String[] filenames;
 
@@ -51,7 +53,8 @@ public class QuizMenuButtonAdapter extends BaseAdapter {
             // if it's not recycled, initialize some attributes
             btn = new Button(mContext);
             btn.setLayoutParams(new GridView.LayoutParams(200, 200));
-            btn.setPadding(40, 20, 40, 20);
+            btn.setPadding(60, 60, 60, 60);
+            btn.setOnClickListener(this);
         }
         else {
             btn = (Button) convertView;
@@ -64,6 +67,13 @@ public class QuizMenuButtonAdapter extends BaseAdapter {
         btn.setId(position);
 
         return btn;
+    }
+
+    @Override
+    public void onClick (View view) {
+        Log.d("", "Test clicked clicked.");
+        view.getContext().startActivity(new Intent(view.getContext(), QuizLaunchTestActivity.class));
+
     }
 }
 

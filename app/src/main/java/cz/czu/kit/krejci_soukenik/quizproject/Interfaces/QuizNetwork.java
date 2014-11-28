@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject.Model;
+package cz.czu.kit.krejci_soukenik.quizproject.Interfaces;
 
 /**
  * Created by soukenik on 11/11/14.

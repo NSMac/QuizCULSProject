@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject.Model;
+package cz.czu.kit.krejci_soukenik.quizproject.Interfaces;
 
 /**
  * Created by soukenik on 11/11/14.
@@ -8,4 +8,5 @@ public interface QuizResults {
     public String[] getLaunchedTests();
     public double getAvgScore();
     public boolean isSelectedTestedSuccessful(int id);
+    public void setScore(double score);
 }

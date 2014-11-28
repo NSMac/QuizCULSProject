@@ -3,6 +3,15 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/test_check_button"
+        android:layout_below="@+id/button" />
+
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -13,62 +22,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Question"
-        android:id="@+id/test_question"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer 1"
-        android:id="@+id/test_answer1"
-        android:layout_below="@+id/test_question"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="63dp"
-        android:checked="false"
-        android:paddingLeft="20dp"
-        android:layout_marginLeft="20dp" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer 2"
-        android:id="@+id/test_answer2"
-        android:layout_below="@+id/test_answer1"
-        android:layout_alignLeft="@+id/test_answer1"
-        android:layout_alignStart="@+id/test_answer1"
-        android:checked="false"
-        android:paddingLeft="20dp"
-        android:layout_marginTop="20dp" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer 3"
-        android:id="@+id/test_answer3"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/test_answer2"
-        android:layout_alignStart="@+id/test_answer2"
-        android:checked="false"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="20dp" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Check"
         android:id="@+id/test_check_button"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="48dp"
-        android:layout_alignLeft="@+id/test_answer3"
-        android:layout_alignStart="@+id/test_answer3"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="20dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
