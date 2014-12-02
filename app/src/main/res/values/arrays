@@ -1,0 +1,22 @@
+<resources>
+    <string-array name="showListArray">
+        <item>Zobrazit procenta</item>
+        <item>Zobrazit body</item>
+    </string-array>
+    <string-array name="showListValues">
+        <item>Body</item>
+        <item>Procenta</item>
+    </string-array>
+    <string-array name="numListArray">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="numListValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>

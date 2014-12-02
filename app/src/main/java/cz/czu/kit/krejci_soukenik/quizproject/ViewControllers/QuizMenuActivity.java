@@ -1,7 +1,10 @@
 package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +22,9 @@ public class QuizMenuActivity extends Activity {
 
     GridView gridQuizes;
     Button[] buttons;
+
+    public static String showResults = null;
+    public static String numQustions = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,15 @@ public class QuizMenuActivity extends Activity {
         gridQuizes.setAdapter(adapter);*/
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        showResults = sharedPrefs.getString("showResults", "Body");
+        numQustions = sharedPrefs.getString("setNumQuestions", "2");
+    }
+
 
 
 
@@ -53,16 +68,13 @@ public class QuizMenuActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.settings:
+                Intent settingsActivity = new Intent(getBaseContext(), QuizSettingsActivity.class);
+                startActivity(settingsActivity);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
