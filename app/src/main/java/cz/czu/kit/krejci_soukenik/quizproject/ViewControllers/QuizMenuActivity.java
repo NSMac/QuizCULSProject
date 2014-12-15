@@ -1,8 +1,10 @@
 package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -13,12 +15,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizNetwork;
+import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizTest;
 import cz.czu.kit.krejci_soukenik.quizproject.R;
 
 
 public class QuizMenuActivity extends Activity {
 
     ArrayAdapter<String> adapter;
+    private ProgressDialog pDialog;
+    // Hashmap for ListView
+    ArrayList<QuizTest> testsList;
 
     GridView gridQuizes;
     Button[] buttons;
@@ -32,7 +42,11 @@ public class QuizMenuActivity extends Activity {
         setContentView(R.layout.quiz_menu);
 
         gridQuizes = (GridView) findViewById(R.id.gridQuizes);
-        gridQuizes.setAdapter(new QuizMenuButtonAdapter(this));
+
+
+        QuizNetwork.getUrlTest();
+        QuizNetwork.getUrlQuestion(2);
+        new GetAllTests().execute();
         /*buttons = new Button[20];
         for (Button button : buttons) {
             button.setText("Button");
@@ -75,6 +89,51 @@ public class QuizMenuActivity extends Activity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private class GetAllTests extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+            pDialog = new ProgressDialog(QuizMenuActivity.this);
+            pDialog.setMessage("Prosím čekejte...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            // Creating service handler class instance
+            QuizServiceHandler sh = new QuizServiceHandler();
+
+            // Making a request to url and getting response
+            String jsonTests = sh.makeServiceCall(QuizNetwork.getUrlTest(), QuizServiceHandler.GET);
+            Log.d("Response: ", "> " + jsonTests);
+
+            testsList = QuizNetwork.parseJsonTests(jsonTests);
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            if (pDialog.isShowing())
+                pDialog.dismiss();
+
+            if (testsList != null) {
+                String[] filenames = new String[testsList.size()];
+                int i = 0;
+                for (QuizTest test : testsList) {
+                    filenames[i++] = test.getNazev();
+                }
+                gridQuizes.setAdapter(new QuizMenuButtonAdapter(QuizMenuActivity.this, filenames, testsList));
+            } else {
+                Log.e("ServiceHandler", "Couldn't get any data from the URL");
+            }
         }
     }
 }
