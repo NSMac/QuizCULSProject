@@ -20,7 +20,7 @@ public class QuizOtazka implements Serializable {
     private String ok;
     private int typOtazky;
     private ArrayList<QuizOdpoved> odpvedi;
-    private int selectedAnswer;
+
 
     @Override
     public String toString() {
@@ -30,17 +30,9 @@ public class QuizOtazka implements Serializable {
                 ", ok='" + ok + '\'' +
                 ", typOtazky=" + typOtazky +
                 ", odpvedi=" + odpvedi +
-                ", selectedAnswer=" + selectedAnswer +
                 '}';
     }
 
-    public int getSelectedAnswer() {
-        return selectedAnswer;
-    }
-
-    public void setSelectedAnswer(int selectedAnswer) {
-        this.selectedAnswer = selectedAnswer;
-    }
 
     public QuizOtazka(ArrayList<QuizOdpoved> odpvedi, int idOtazka, String otazka, String  ok, int typOtazky) {
         this.odpvedi = odpvedi;

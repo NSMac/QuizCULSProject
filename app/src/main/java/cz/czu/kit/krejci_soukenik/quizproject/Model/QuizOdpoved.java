@@ -21,15 +21,7 @@ public class QuizOdpoved implements Serializable {
     private String text;
     private int ok;
     private int zobrazit;
-
-    public QuizOdpoved(int idOtazka, int otazkaIdOtazka, int idTest, String text, int ok, int zobrazit) {
-        this.idOtazka = idOtazka;
-        this.otazkaIdOtazka = otazkaIdOtazka;
-        this.idTest = idTest;
-        this.text = text;
-        this.ok = ok;
-        this.zobrazit = zobrazit;
-    }
+    private boolean selectedAnswer;
 
     @Override
     public String toString() {
@@ -40,7 +32,25 @@ public class QuizOdpoved implements Serializable {
                 ", text='" + text + '\'' +
                 ", ok=" + ok +
                 ", zobrazit=" + zobrazit +
+                ", selectedAnswer=" + selectedAnswer +
                 '}';
+    }
+
+    public boolean isSelectedAnswer() {
+        return selectedAnswer;
+    }
+
+    public void setSelectedAnswer(boolean selectedAnswer) {
+        this.selectedAnswer = selectedAnswer;
+    }
+
+    public QuizOdpoved(int idOtazka, int otazkaIdOtazka, int idTest, String text, int ok, int zobrazit) {
+        this.idOtazka = idOtazka;
+        this.otazkaIdOtazka = otazkaIdOtazka;
+        this.idTest = idTest;
+        this.text = text;
+        this.ok = ok;
+        this.zobrazit = zobrazit;
     }
 
     public int getIdOtazka() {
