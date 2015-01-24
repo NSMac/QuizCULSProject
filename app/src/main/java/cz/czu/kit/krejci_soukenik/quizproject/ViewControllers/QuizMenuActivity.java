@@ -43,22 +43,12 @@ public class QuizMenuActivity extends Activity {
 
         gridQuizes = (GridView) findViewById(R.id.gridQuizes);
 
-
-        QuizNetwork.getUrlTest();
-        QuizNetwork.getUrlQuestion(2);
-        new GetAllTests().execute();
-        /*buttons = new Button[20];
-        for (Button button : buttons) {
-            button.setText("Button");
-            button.setPadding(10, 10, 10, 10);
+        if (savedInstanceState == null) {
+            new GetAllTests().execute();
+        } else {
+            testsList = (ArrayList<QuizTest>)savedInstanceState.getSerializable("myTests");
         }
-        //gridQuizes.set
-        /*adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        for (int i = 0; i < 80; i++) {
-            adapter.add("dummy data " + i);
 
-        }
-        gridQuizes.setAdapter(adapter);*/
     }
 
     @Override
@@ -70,8 +60,12 @@ public class QuizMenuActivity extends Activity {
         numQustions = sharedPrefs.getString("setNumQuestions", "2");
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putSerializable("myTests", testsList);
 
-
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

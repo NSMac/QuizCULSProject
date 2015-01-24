@@ -1,12 +1,13 @@
 package cz.czu.kit.krejci_soukenik.quizproject.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * Created by soukenik on 28/11/14.
  */
-public class QuizOtazka {
+public class QuizOtazka implements Serializable {
 
     public static final String TAG_QUESTION = "otazka";
     public static final String TAG_ID_QUESTION = "id_otazka";
@@ -19,6 +20,27 @@ public class QuizOtazka {
     private String ok;
     private int typOtazky;
     private ArrayList<QuizOdpoved> odpvedi;
+    private int selectedAnswer;
+
+    @Override
+    public String toString() {
+        return "QuizOtazka{" +
+                "idOtazka=" + idOtazka +
+                ", otazka='" + otazka + '\'' +
+                ", ok='" + ok + '\'' +
+                ", typOtazky=" + typOtazky +
+                ", odpvedi=" + odpvedi +
+                ", selectedAnswer=" + selectedAnswer +
+                '}';
+    }
+
+    public int getSelectedAnswer() {
+        return selectedAnswer;
+    }
+
+    public void setSelectedAnswer(int selectedAnswer) {
+        this.selectedAnswer = selectedAnswer;
+    }
 
     public QuizOtazka(ArrayList<QuizOdpoved> odpvedi, int idOtazka, String otazka, String  ok, int typOtazky) {
         this.odpvedi = odpvedi;
@@ -48,14 +70,4 @@ public class QuizOtazka {
         return odpvedi;
     }
 
-    @Override
-    public String toString() {
-        return "QuizOtazka{" +
-                "idOtazka=" + idOtazka +
-                ", otazka='" + otazka + '\'' +
-                ", ok='" + ok + '\'' +
-                ", typOtazky=" + typOtazky +
-                ", odpvedi=" + odpvedi +
-                '}';
-    }
 }

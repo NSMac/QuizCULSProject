@@ -57,7 +57,7 @@ public class QuizNetwork {
                     int pocet_otazek = t.getInt(QuizTest.TAG_NUM_OF_QUESTIONS);
                     String nazev = null;
                     try {
-                        nazev = new String(t.getString(QuizTest.TAG_TITLE).getBytes(), "UTF-8");
+                        nazev = new String(t.getString(QuizTest.TAG_TITLE).getBytes("ISO-8859-1"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -92,8 +92,8 @@ public class QuizNetwork {
                     JSONObject otazka = jsonArray.getJSONObject(i);
                     JSONObject otazka_object = otazka.getJSONObject(QuizOtazka.TAG_QUESTION);
                     int id_otazka = otazka_object.getInt(QuizOtazka.TAG_ID_QUESTION);
-                    String otazka_text = otazka_object.getString(QuizOtazka.TAG_QUESTION_TEXT);
-                    String ok_otazka = otazka_object.getString(QuizOtazka.TAG_OK);
+                    String otazka_text = new String(otazka_object.getString(QuizOtazka.TAG_QUESTION_TEXT).getBytes("ISO-8859-1"), "UTF-8");
+                    String ok_otazka = new String(otazka_object.getString(QuizOtazka.TAG_OK).getBytes("ISO-8859-1"), "UTF-8");
                     int typ_otazka = otazka_object.getInt(QuizOtazka.TAG_QUESTION_TYPE);
 
                     JSONArray odpovedi = otazka.getJSONArray(QuizOdpoved.TAG_ANSWERS);
@@ -102,7 +102,7 @@ public class QuizNetwork {
                         JSONObject odpoved = odpovedi.getJSONObject(j);
 
                         int id_ot = odpoved.getInt(QuizOdpoved.TAG_ID_QUESTION);
-                        String odpoved_text = odpoved.getString(QuizOdpoved.TAG_ANSWER_TEXT);
+                        String odpoved_text = new String(odpoved.getString(QuizOdpoved.TAG_ANSWER_TEXT).getBytes("ISO-8859-1"),"UTF-8");
                         int ok_odpoved = odpoved.getInt(QuizOdpoved.TAG_OK);
                         int zobrazit = odpoved.getInt(QuizOdpoved.TAG_DISPLAY);
                         int otazka_id_otazka = odpoved.getInt(QuizOdpoved.TAG_QUSTION);
@@ -119,6 +119,8 @@ public class QuizNetwork {
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
         }
         return questionsList;

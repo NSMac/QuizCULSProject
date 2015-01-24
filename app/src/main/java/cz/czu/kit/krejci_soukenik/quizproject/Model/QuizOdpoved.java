@@ -1,9 +1,11 @@
 package cz.czu.kit.krejci_soukenik.quizproject.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by soukenik on 28/11/14.
  */
-public class QuizOdpoved {
+public class QuizOdpoved implements Serializable {
 
     public static final String TAG_ANSWERS = "odpovedi";
     public static final String TAG_ID_QUESTION = "id_otazka";

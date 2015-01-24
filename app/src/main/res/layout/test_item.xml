@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Do koncesovaných živností patří:"
         android:id="@+id/otazka"
-        android:padding="20dp" />
+        android:padding="20dp"
+        android:editable="true" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New RadioButton"
-        android:id="@+id/odpoved1"
+        android:id="@+id/odpovedA"
         android:padding="15dp"
         android:layout_marginLeft="20dp" />
 
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New RadioButton"
-        android:id="@+id/odpoved2"
+        android:id="@+id/odpovedB"
         android:padding="15dp"
         android:layout_marginLeft="20dp" />
 
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New RadioButton"
-        android:id="@+id/odpoved3"
+        android:id="@+id/odpovedC"
         android:padding="15dp"
         android:layout_marginLeft="20dp" />
 

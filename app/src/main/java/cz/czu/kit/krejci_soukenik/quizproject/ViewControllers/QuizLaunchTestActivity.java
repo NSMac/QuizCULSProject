@@ -55,7 +55,13 @@ public class QuizLaunchTestActivity extends Activity implements View.OnClickList
     @Override
     public void onClick (View view) {
         new GetQuestions().execute();
-        view.getContext().startActivity(new Intent(view.getContext(), QuizTestActivity.class));
+        Log.d("QuizLaunchTestActivity", "Clicked.");
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("questions", questionsList);
+
+        Intent intent = new Intent(view.getContext(), QuizTestActivity.class);
+        intent.putExtras(bundle);
+        view.getContext().startActivity(intent);
 
     }
 
