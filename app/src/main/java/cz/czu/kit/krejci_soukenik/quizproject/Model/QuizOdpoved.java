@@ -51,6 +51,7 @@ public class QuizOdpoved implements Serializable {
         this.text = text;
         this.ok = ok;
         this.zobrazit = zobrazit;
+        this.selectedAnswer = false;
     }
 
     public int getIdOtazka() {

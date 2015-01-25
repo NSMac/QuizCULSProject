@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -28,8 +29,6 @@ import cz.czu.kit.krejci_soukenik.quizproject.R;
  * Created by soukenik on 22/01/15.
  */
 
-
-
 public class QuizTestItemAdapter extends BaseAdapter {
     private static int MAX_ANSWERS = 6;
 
@@ -41,6 +40,11 @@ public class QuizTestItemAdapter extends BaseAdapter {
     static class ViewHolder {
         TextView question;
         CheckBox[] answers;
+
+        public ViewHolder(TextView question, CheckBox[] answers) {
+            this.question = question;
+            this.answers = answers;
+        }
     }
 
     public QuizTestItemAdapter(Context context,  ArrayList<QuizOtazka> questionsList) {
@@ -53,18 +57,21 @@ public class QuizTestItemAdapter extends BaseAdapter {
     }
 
     // Total number of things contained within the adapter
+    @Override
     public int getCount() {
         return questionsList.size();
     }
 
     // Require for structure, not really used in my code.
-    public Object getItem(int position) {
-        return null;
+    @Override
+    public QuizOtazka getItem(int position) {
+        return questionsList.get(position);
     }
 
     // Require for structure, not really used in my code. Can
     // be used to get the id of an item in the adapter for
     // manual control.
+    @Override
     public long getItemId(int position) {
         return position;
     }
@@ -74,45 +81,69 @@ public class QuizTestItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position,
                         View convertView, ViewGroup parent) {
+
         View testItemView = convertView;
-        CheckBox checkBox;
-        QuizOtazka ot = questionsList.get(position);
+        TextView question;
+        CheckBox[] answers;
+        final QuizOtazka ot = getItem(position);
+
         if (testItemView == null) {
             LayoutInflater inflater = (LayoutInflater)context.getSystemService
                     (Context.LAYOUT_INFLATER_SERVICE);
-            testItemView = inflater.inflate(R.layout.test_item, null);
-            ViewHolder viewHolder = new ViewHolder();
-            viewHolder.question = (TextView)testItemView.findViewById(R.id.otazka);
-            viewHolder.answers = new CheckBox[MAX_ANSWERS];
+            testItemView = inflater.inflate(R.layout.test_item, parent, false);
+            question = (TextView)testItemView.findViewById(R.id.otazka);
+            answers = new CheckBox[MAX_ANSWERS];
             for (int i = 1; i <= MAX_ANSWERS; i++) {
                 String odpovedID = "odpoved"+i;
                 int chID = testItemView.getResources().getIdentifier(odpovedID, "id", "cz.czu.kit.krejci_soukenik.quizproject");
-                viewHolder.answers[(i-1)] = (CheckBox)testItemView.findViewById(chID);
-            }
+                answers[(i-1)] = (CheckBox)testItemView.findViewById(chID);
 
-//            viewHolder.aButton = (RadioButton)testItemView.findViewById(R.id.odpovedA);
-//            viewHolder.bButton = (RadioButton)testItemView.findViewById(R.id.odpovedB);
-//            viewHolder.cButton = (RadioButton)testItemView.findViewById(R.id.odpovedC);
-            testItemView.setTag(viewHolder);
+            }
+            testItemView.setTag(new ViewHolder(question, answers));
+        } else {
+            ViewHolder holder = (ViewHolder)testItemView.getTag();
+            question = holder.question;
+            answers = holder.answers;
+            for (int i = 0; i < MAX_ANSWERS; i++) {
+                answers[i].setOnCheckedChangeListener(null);
+            }
         }
-        ViewHolder holder = (ViewHolder)testItemView.getTag();
-        holder.question.setText(ot.getOtazka());
+        //ViewHolder holder = (ViewHolder)testItemView.getTag();
+        question.setText(ot.getOtazka());
         for (int i = 0; i < MAX_ANSWERS; i++) {
-            checkBox = holder.answers[i];
+            CheckBox checkBox = answers[i];
             if (i < ot.getOdpvedi().size()) {
                 String answer = ot.getOdpvedi().get(i).getText();
                 checkBox.setId(ot.getOdpvedi().get(i).getIdOtazka());
                 checkBox.setText(answer);
+                checkBox.setChecked(ot.getOdpvedi().get(i).isSelectedAnswer());
+                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        QuizOdpoved selectedAnswer = null;
+                        for (QuizOdpoved od : ot.getOdpvedi()) {
+                            if (buttonView.getId() == od.getIdOtazka()) selectedAnswer = od;
+                        }
+                        try {
+                            if (isChecked) {
+                                selectedAnswer.setSelectedAnswer(true);
+                                Log.d("QuizOdpoved", "Selected answer is: " + selectedAnswer.toString());
+                            } else {
+                                Log.d("QuizOdpoved", "Unselected answer is: " + selectedAnswer.toString());
+                                selectedAnswer.setSelectedAnswer(false);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+                //checkBox.setOnClickListener(new MyOnClickListener(checkBox, ot));
             } else {
                 checkBox.setVisibility(testItemView.GONE);
 
             }
         }
-
-
-//        holder.aButton.setText(a.getText());
-//        holder.bButton.setText(b.getText());
-//        holder.cButton.setText(c.getText());
 
         return testItemView;
     }
