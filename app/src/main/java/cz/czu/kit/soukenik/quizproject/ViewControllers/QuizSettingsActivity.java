@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
+package cz.czu.kit.soukenik.quizproject.ViewControllers;
 
 /**
  * Created by soukenik on 02/12/14.

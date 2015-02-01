@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
+package cz.czu.kit.soukenik.quizproject.ViewControllers;
 
 
 import android.content.Context;
@@ -6,22 +6,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+import java.util.List;
 
-import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizOdpoved;
-import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizOtazka;
-import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizTest;
+import cz.czu.kit.soukenik.quizproject.Model.QuizOdpoved;
+import cz.czu.kit.soukenik.quizproject.Model.QuizOtazka;
 import cz.czu.kit.krejci_soukenik.quizproject.R;
 
 
@@ -35,7 +29,7 @@ public class QuizTestItemAdapter extends BaseAdapter {
     private Context context;
     private String question;
     private String[] answers;
-    private ArrayList<QuizOtazka> questionsList;
+    private List<QuizOtazka> questionsList;
 
     static class ViewHolder {
         TextView question;
@@ -47,7 +41,7 @@ public class QuizTestItemAdapter extends BaseAdapter {
         }
     }
 
-    public QuizTestItemAdapter(Context context,  ArrayList<QuizOtazka> questionsList) {
+    public QuizTestItemAdapter(Context context,  List<QuizOtazka> questionsList) {
         //super(context, R.layout.test_item, questionsList);
         this.context = context;
         //this.question = question;
@@ -95,7 +89,7 @@ public class QuizTestItemAdapter extends BaseAdapter {
             answers = new CheckBox[MAX_ANSWERS];
             for (int i = 1; i <= MAX_ANSWERS; i++) {
                 String odpovedID = "odpoved"+i;
-                int chID = testItemView.getResources().getIdentifier(odpovedID, "id", "cz.czu.kit.krejci_soukenik.quizproject");
+                int chID = testItemView.getResources().getIdentifier(odpovedID, "id", "cz.czu.kit.soukenik.quizproject");
                 answers[(i-1)] = (CheckBox)testItemView.findViewById(chID);
 
             }
@@ -130,7 +124,7 @@ public class QuizTestItemAdapter extends BaseAdapter {
                                 Log.d("QuizOdpoved", "Selected answer is: " + selectedAnswer.toString());
                             } else {
                                 Log.d("QuizOdpoved", "Unselected answer is: " + selectedAnswer.toString());
-                                selectedAnswer.setSelectedAnswer(false);
+
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

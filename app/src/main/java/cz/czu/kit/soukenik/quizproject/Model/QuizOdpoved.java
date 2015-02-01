@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject.Model;
+package cz.czu.kit.soukenik.quizproject.Model;
 
 import java.io.Serializable;
 

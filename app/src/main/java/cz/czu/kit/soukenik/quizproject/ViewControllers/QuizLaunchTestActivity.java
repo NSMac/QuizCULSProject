@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
+package cz.czu.kit.soukenik.quizproject.ViewControllers;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizNetwork;
-import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizOtazka;
-import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizTest;
+import cz.czu.kit.soukenik.quizproject.Model.QuizNetwork;
+import cz.czu.kit.soukenik.quizproject.Model.QuizOtazka;
+import cz.czu.kit.soukenik.quizproject.Model.QuizTest;
 import cz.czu.kit.krejci_soukenik.quizproject.R;
 
 /**

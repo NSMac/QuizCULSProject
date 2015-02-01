@@ -1,10 +1,9 @@
-package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
+package cz.czu.kit.soukenik.quizproject.ViewControllers;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,7 +12,7 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
-import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizTest;
+import cz.czu.kit.soukenik.quizproject.Model.QuizTest;
 
 /**
  * Created by soukenik on 09/11/14.

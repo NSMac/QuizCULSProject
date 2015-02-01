@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject.Model;
+package cz.czu.kit.soukenik.quizproject.Model;
 
 import android.util.Log;
 
@@ -12,7 +12,6 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 /**
  * Created by soukenik on 13/12/14.

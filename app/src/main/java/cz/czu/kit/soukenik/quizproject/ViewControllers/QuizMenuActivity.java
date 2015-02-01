@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject.ViewControllers;
+package cz.czu.kit.soukenik.quizproject.ViewControllers;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -10,16 +10,14 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizNetwork;
-import cz.czu.kit.krejci_soukenik.quizproject.Model.QuizTest;
+import cz.czu.kit.soukenik.quizproject.Model.QuizNetwork;
+import cz.czu.kit.soukenik.quizproject.Model.QuizTest;
 import cz.czu.kit.krejci_soukenik.quizproject.R;
 
 

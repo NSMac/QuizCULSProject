@@ -1,8 +1,7 @@
-package cz.czu.kit.krejci_soukenik.quizproject.Model;
+package cz.czu.kit.soukenik.quizproject.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by soukenik on 28/11/14.
@@ -20,6 +19,7 @@ public class QuizOtazka implements Serializable {
     private String ok;
     private int typOtazky;
     private ArrayList<QuizOdpoved> odpvedi;
+    private boolean prazdnaOdpoved;
 
 
     @Override
@@ -62,4 +62,19 @@ public class QuizOtazka implements Serializable {
         return odpvedi;
     }
 
+    public boolean isFilledAnswers() {
+        boolean vyplnenaOdpoved = false;
+        for (QuizOdpoved ans : getOdpvedi()) {
+            if (ans.isSelectedAnswer()) vyplnenaOdpoved = true;
+        }
+        return vyplnenaOdpoved;
+    }
+
+    public boolean isPrazdnaOdpoved() {
+        return prazdnaOdpoved;
+    }
+
+    public void setPrazdnaOdpoved(boolean prazdnaOdpoved) {
+        this.prazdnaOdpoved = prazdnaOdpoved;
+    }
 }
