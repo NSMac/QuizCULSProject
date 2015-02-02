@@ -17,7 +17,7 @@ import java.util.List;
 
 import cz.czu.kit.soukenik.quizproject.Model.QuizOdpoved;
 import cz.czu.kit.soukenik.quizproject.Model.QuizOtazka;
-import cz.czu.kit.krejci_soukenik.quizproject.R;
+import cz.czu.kit.soukenik.quizproject.R;
 
 
 /**
@@ -28,8 +28,6 @@ public class QuizTestItemAdapter extends BaseAdapter {
     private static int MAX_ANSWERS = 6;
 
     private Context context;
-    private String question;
-    private String[] answers;
     private List<QuizOtazka> questionsList;
     private boolean showCorrectAnswers;
 
@@ -44,10 +42,8 @@ public class QuizTestItemAdapter extends BaseAdapter {
     }
 
     public QuizTestItemAdapter(Context context,  List<QuizOtazka> questionsList, boolean showCorrectAnswers) {
-        //super(context, R.layout.test_item, questionsList);
+
         this.context = context;
-        //this.question = question;
-        //this.answers = answers;
         this.questionsList = questionsList;
         this.showCorrectAnswers = showCorrectAnswers;
     }

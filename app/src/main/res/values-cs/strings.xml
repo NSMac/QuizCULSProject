@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Nastavení</string>
+    <string name="again">Zkusit znovu</string>
+    <string name="check">Zkontrolovat odpovědi</string>
+    <string name="cont">Pokračovat</string>
+    <string name="decision">Oprvdu si přejete ukončit test?</string>
+    <string name="displayInfo">Zobrazit výsledky v bodech či procentech</string>
+    <string name="displayResults">Zobrazit výsledky</string>
+    <string name="launch">Spustit test</string>
+    <string name="negative_button">Storno</string>
+    <string name="noConnection">Žádné internetové připojení</string>
+    <string name="numQ">Počet otázek na stránku</string>
+    <string name="positive_button">Ukončit</string>
+    <string name="questionCount">Počet otázek</string>
+    <string name="quit">Ukončit</string>
+    <string name="quizRepeat">Počet opakování</string>
+    <string name="quizSucces">Úspěšnost</string>
+    <string name="setNum">Nastevní počtu zobrazení otázek na stránku.</string>
+    <string name="settings">Nastavení</string>
+    <string name="showCorrectAns">Zobrazit správné odpovědi</string>
+    <string name="wait">Čekejte prosím...</string>
+</resources>

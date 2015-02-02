@@ -1,4 +1,4 @@
-package cz.czu.kit.krejci_soukenik.quizproject;
+package cz.czu.kit.soukenik.quizproject;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

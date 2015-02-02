@@ -22,7 +22,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
-import cz.czu.kit.krejci_soukenik.quizproject.R;
+import cz.czu.kit.soukenik.quizproject.R;
 //import com.example.android.networkusage.R;
 
 /**

@@ -4,8 +4,8 @@
         <item>Zobrazit body</item>
     </string-array>
     <string-array name="showListValues">
-        <item>Body</item>
         <item>Procenta</item>
+        <item>Body</item>
     </string-array>
     <string-array name="numListArray">
         <item>1</item>

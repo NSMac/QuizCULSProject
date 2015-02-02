@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">QuizProject</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name" translatable="false">Quiz Project</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="settings">Settings</string>
+    <string name="decision">Do you really want to leave the test?</string>
+    <string name="positive_button">Quit</string>
+    <string name="negative_button">Cancel</string>
+    <string name="quit">Quit</string>
+    <string name="questionCount">Number of questions</string>
+    <string name="quizRepeat">Number of repeat</string>
+    <string name="quizSucces">Successful rate</string>
+    <string name="cont">Continue</string>
+    <string name="check">Check Answers</string>
+    <string name="launch">Launch Test</string>
+    <string name="showCorrectAns">Show Correct Answers</string>
+    <string name="noConnection">No Internet Connection</string>
+    <string name="again">Try again</string>
+    <string name="wait">Please wait...</string>
+    <string name="displayResults">Display Results</string>
+    <string name="displayInfo">Show results in points or in percents</string>
+    <string name="numQ">Number of questions on page</string>
+    <string name="setNum">Set number of questions on a page</string>
+
 
 </resources>

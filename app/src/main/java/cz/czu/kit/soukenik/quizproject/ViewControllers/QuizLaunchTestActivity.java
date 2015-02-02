@@ -1,7 +1,9 @@
 package cz.czu.kit.soukenik.quizproject.ViewControllers;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import cz.czu.kit.soukenik.quizproject.Model.QuizNetwork;
 import cz.czu.kit.soukenik.quizproject.Model.QuizOtazka;
 import cz.czu.kit.soukenik.quizproject.Model.QuizTest;
-import cz.czu.kit.krejci_soukenik.quizproject.R;
+import cz.czu.kit.soukenik.quizproject.R;
 
 /**
  * Created by soukenik on 28/11/14.
@@ -63,7 +65,7 @@ public class QuizLaunchTestActivity extends Activity implements View.OnClickList
         title.setText(quizTest.getNazev());
         questionsCountResult.setText(""+quizTest.getPocetOtazek());
         quizRepeatingResult.setText(""+quizTest.getPocetOpakovani());
-        quizSucessResult.setText(""+quizTest.getUspesnost());
+        quizSucessResult.setText(""+quizTest.getUspesnost()+"%");
 
         launchButton = (Button) findViewById(R.id.quiz_launch_button);
         launchButton.setOnClickListener(this);
@@ -92,7 +94,7 @@ public class QuizLaunchTestActivity extends Activity implements View.OnClickList
             super.onPreExecute();
             // Showing progress dialog
             pDialog = new ProgressDialog(QuizLaunchTestActivity.this);
-            pDialog.setMessage("Prosím čekejte...");
+            pDialog.setMessage(getString(R.string.wait));
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -121,7 +123,24 @@ public class QuizLaunchTestActivity extends Activity implements View.OnClickList
                 Log.d("QuizLaunchTestActivity", questionsList.toString());
             } else {
                 Log.e("ServiceHandler", "Couldn't get any data from the URL");
+                noConnectionAlertHandler();
             }
+        }
+
+        protected void noConnectionAlertHandler(){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(QuizLaunchTestActivity.this);
+            alertDialogBuilder.setMessage(R.string.noConnection);
+            alertDialogBuilder.setPositiveButton(R.string.again,
+                    new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            new GetQuestions().execute();
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
         }
     }
 }

@@ -1,6 +1,8 @@
 package cz.czu.kit.soukenik.quizproject.ViewControllers;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.czu.kit.soukenik.quizproject.Model.QuizOtazka;
-import cz.czu.kit.krejci_soukenik.quizproject.R;
+import cz.czu.kit.soukenik.quizproject.R;
 import cz.czu.kit.soukenik.quizproject.Model.QuizTest;
 
 /**
@@ -24,6 +26,7 @@ public class QuizTestActivity extends Activity implements View.OnClickListener {
 
     ArrayList<QuizOtazka> questionsList;
     private Button continueButton;
+    private Button quitButton;
     private List<QuizOtazka> subList;
     private int numberOfQuestions;
     private QuizTest quizTest;
@@ -57,6 +60,17 @@ public class QuizTestActivity extends Activity implements View.OnClickListener {
             continueButton.setText("Continue");
         }
 
+        quitButton = (Button)findViewById(R.id.quitButton);
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                if (showCorrectAnswers){
+                    Intent intent = new Intent(QuizTestActivity.this, QuizMenuActivity.class);
+                    startActivity(intent);
+                } else alertHandler();
+            }
+        });
+
         numberOfQuestions = getNumberOfQuestions();
         if (showCorrectAnswers){
             continueButton.setVisibility(View.GONE);
@@ -66,6 +80,32 @@ public class QuizTestActivity extends Activity implements View.OnClickListener {
         ListAdapter adapter = new QuizTestItemAdapter(QuizTestActivity.this, subList, showCorrectAnswers);
         lv.setAdapter(adapter);
 
+    }
+
+    public void alertHandler() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(QuizTestActivity.this);
+        alertDialogBuilder.setMessage(R.string.decision);
+        alertDialogBuilder.setPositiveButton(R.string.positive_button,
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(QuizTestActivity.this, QuizMenuActivity.class);
+                        startActivity(intent);
+
+                    }
+                });
+        alertDialogBuilder.setNegativeButton(R.string.negative_button,
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     public int getNumberOfQuestions() {
@@ -96,10 +136,23 @@ public class QuizTestActivity extends Activity implements View.OnClickListener {
             } else {
                 rangeList = fullList.subList(index, endNum);
             }
-            Log.d("QuizTest", "SubList: "+rangeList.toString());
+            try {
+                Log.d("QuizTest", "SubList: "+rangeList.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             return rangeList;
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (showCorrectAnswers) {
+            super.onBackPressed();
+        } else alertHandler();
+        return;
     }
 
     public boolean isListInTheEnd(int numberOfQuestions, ArrayList<QuizOtazka> fullList) {

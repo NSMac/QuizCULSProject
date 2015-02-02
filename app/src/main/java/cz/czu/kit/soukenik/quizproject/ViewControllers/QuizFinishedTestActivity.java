@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import cz.czu.kit.krejci_soukenik.quizproject.R;
+import cz.czu.kit.soukenik.quizproject.R;
 import cz.czu.kit.soukenik.quizproject.Model.QuizOdpoved;
 import cz.czu.kit.soukenik.quizproject.Model.QuizOtazka;
 import cz.czu.kit.soukenik.quizproject.Model.QuizTest;
@@ -72,7 +72,7 @@ public class QuizFinishedTestActivity extends Activity implements View.OnClickLi
         getFinalTestResult();
 
         launchButton = (Button) findViewById(R.id.quiz_launch_button);
-        launchButton.setText("Check Test");
+        launchButton.setText(getString(R.string.showCorrectAns));
         launchButton.setOnClickListener(this);
 
     }
@@ -125,6 +125,12 @@ public class QuizFinishedTestActivity extends Activity implements View.OnClickLi
             testResult.setTextColor(Color.RED);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(QuizFinishedTestActivity.this, QuizMenuActivity.class);
+        startActivity(intent);
     }
 
 }

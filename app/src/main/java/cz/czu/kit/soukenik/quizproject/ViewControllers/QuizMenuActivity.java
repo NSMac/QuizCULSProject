@@ -1,7 +1,9 @@
 package cz.czu.kit.soukenik.quizproject.ViewControllers;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 
 import cz.czu.kit.soukenik.quizproject.Model.QuizNetwork;
 import cz.czu.kit.soukenik.quizproject.Model.QuizTest;
-import cz.czu.kit.krejci_soukenik.quizproject.R;
+import cz.czu.kit.soukenik.quizproject.R;
 
 
 public class QuizMenuActivity extends Activity {
@@ -84,13 +86,19 @@ public class QuizMenuActivity extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        //Do Nothing
+        return;
+    }
+
     private class GetAllTests extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             // Showing progress dialog
             pDialog = new ProgressDialog(QuizMenuActivity.this);
-            pDialog.setMessage("Prosím čekejte...");
+            pDialog.setMessage(getString(R.string.wait));
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -125,7 +133,25 @@ public class QuizMenuActivity extends Activity {
                 gridQuizes.setAdapter(new QuizMenuButtonAdapter(QuizMenuActivity.this, filenames, testsList));
             } else {
                 Log.e("ServiceHandler", "Couldn't get any data from the URL");
+                noConnectionAlertHandler();
             }
+        }
+
+        protected void noConnectionAlertHandler(){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(QuizMenuActivity.this);
+            alertDialogBuilder.setMessage(R.string.noConnection);
+            alertDialogBuilder.setPositiveButton(R.string.again,
+                    new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            new GetAllTests().execute();
+
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
         }
     }
 }

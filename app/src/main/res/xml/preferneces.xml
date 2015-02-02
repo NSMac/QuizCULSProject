@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
-        android:title="Zobrazení výsledků"
-        android:summary="Zobrazit výsledky v bodech či procentech"
+        android:title="@string/displayResults"
+        android:summary="@string/displayInfo"
         android:key="showResults"
         android:defaultValue="Body"
         android:entries="@array/showListArray"
         android:entryValues="@array/showListValues"
         />
     <ListPreference
-        android:title="Počet otázek na stránku"
-        android:summary="Nastevní počtu zobrazení otázek na stránku."
+        android:title="@string/numQ"
+        android:summary="@string/setNum"
         android:key="setNumQuestions"
         android:defaultValue="2"
         android:entries="@array/numListArray"
