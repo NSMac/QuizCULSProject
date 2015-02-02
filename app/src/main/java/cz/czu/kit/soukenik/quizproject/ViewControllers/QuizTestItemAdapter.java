@@ -110,6 +110,7 @@ public class QuizTestItemAdapter extends BaseAdapter {
                 String answer = ot.getOdpvedi().get(i).getText();
                 checkBox.setId(ot.getOdpvedi().get(i).getIdOtazka());
                 checkBox.setText(answer);
+                Log.d("QuizTestItemAdapter", "Answer: "+ot.getOdpvedi().get(i).toString());
                 checkBox.setChecked(ot.getOdpvedi().get(i).isSelectedAnswer());
                 checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -123,6 +124,7 @@ public class QuizTestItemAdapter extends BaseAdapter {
                                 selectedAnswer.setSelectedAnswer(true);
                                 Log.d("QuizOdpoved", "Selected answer is: " + selectedAnswer.toString());
                             } else {
+                                selectedAnswer.setSelectedAnswer(false);
                                 Log.d("QuizOdpoved", "Unselected answer is: " + selectedAnswer.toString());
 
                             }

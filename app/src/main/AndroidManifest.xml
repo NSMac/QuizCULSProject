@@ -30,6 +30,11 @@
             android:label="QuizProject">
         </activity>
         <activity
+            android:name="cz.czu.kit.soukenik.quizproject.ViewControllers.QuizFinishedTestActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="QuizProject">
+        </activity>
+        <activity
             android:label="QuizProject"
             android:configChanges="orientation|screenSize"
             android:name="cz.czu.kit.soukenik.quizproject.ViewControllers.QuizSettingsActivity">
