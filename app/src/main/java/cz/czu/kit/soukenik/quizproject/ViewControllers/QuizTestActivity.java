@@ -37,6 +37,7 @@ public class QuizTestActivity extends Activity implements View.OnClickListener {
 
         Intent intent = getIntent();
         quizTest = (QuizTest) intent.getSerializableExtra("quizTest");
+        showCorrectAnswers = (boolean) intent.getSerializableExtra("kShowCorrectAnswers");
 
         try{
             // Get the Bundle Object
@@ -57,9 +58,12 @@ public class QuizTestActivity extends Activity implements View.OnClickListener {
         }
 
         numberOfQuestions = getNumberOfQuestions();
+        if (showCorrectAnswers){
+            continueButton.setVisibility(View.GONE);
+        }
 
         subList = getSubListOfQuestions(numberOfQuestions, questionsList);
-        ListAdapter adapter = new QuizTestItemAdapter(QuizTestActivity.this, subList);
+        ListAdapter adapter = new QuizTestItemAdapter(QuizTestActivity.this, subList, showCorrectAnswers);
         lv.setAdapter(adapter);
 
     }
@@ -75,7 +79,7 @@ public class QuizTestActivity extends Activity implements View.OnClickListener {
                                                     ArrayList<QuizOtazka> fullList) {
         List<QuizOtazka> rangeList = null;
         int index = 0;
-        if (numberOfQustions == 4) {
+        if (numberOfQustions == 4 || showCorrectAnswers) {
             return fullList;
         } else {
             int endNum = index + numberOfQustions;
@@ -129,11 +133,13 @@ public class QuizTestActivity extends Activity implements View.OnClickListener {
             Intent intent = new Intent(view.getContext(), QuizFinishedTestActivity.class);
             intent.putExtras(bundle);
             intent.putExtra("quizTest", quizTest);
+            intent.putExtra("kShowCorrectAnswers", showCorrectAnswers);
             view.getContext().startActivity(intent);
         } else {
             Intent intent = new Intent(view.getContext(), QuizTestActivity.class);
             intent.putExtras(bundle);
             intent.putExtra("quizTest", quizTest);
+            intent.putExtra("kShowCorrectAnswers", showCorrectAnswers);
             view.getContext().startActivity(intent);
         }
 

@@ -80,6 +80,7 @@ public class QuizLaunchTestActivity extends Activity implements View.OnClickList
         Intent intent = new Intent(view.getContext(), QuizTestActivity.class);
         intent.putExtras(bundle);
         intent.putExtra("quizTest", quizTest);
+        intent.putExtra("kShowCorrectAnswers", false);
         view.getContext().startActivity(intent);
 
     }

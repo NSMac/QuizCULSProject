@@ -72,6 +72,7 @@ public class QuizFinishedTestActivity extends Activity implements View.OnClickLi
         getFinalTestResult();
 
         launchButton = (Button) findViewById(R.id.quiz_launch_button);
+        launchButton.setText("Check Test");
         launchButton.setOnClickListener(this);
 
     }
@@ -84,6 +85,8 @@ public class QuizFinishedTestActivity extends Activity implements View.OnClickLi
 
         Intent intent = new Intent(view.getContext(), QuizTestActivity.class);
         intent.putExtras(bundle);
+        intent.putExtra("quizTest", quizTest);
+        intent.putExtra("kShowCorrectAnswers", true);
         view.getContext().startActivity(intent);
 
     }

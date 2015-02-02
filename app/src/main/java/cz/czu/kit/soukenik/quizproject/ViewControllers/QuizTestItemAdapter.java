@@ -2,6 +2,7 @@ package cz.czu.kit.soukenik.quizproject.ViewControllers;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class QuizTestItemAdapter extends BaseAdapter {
     private String question;
     private String[] answers;
     private List<QuizOtazka> questionsList;
+    private boolean showCorrectAnswers;
 
     static class ViewHolder {
         TextView question;
@@ -41,13 +43,13 @@ public class QuizTestItemAdapter extends BaseAdapter {
         }
     }
 
-    public QuizTestItemAdapter(Context context,  List<QuizOtazka> questionsList) {
+    public QuizTestItemAdapter(Context context,  List<QuizOtazka> questionsList, boolean showCorrectAnswers) {
         //super(context, R.layout.test_item, questionsList);
         this.context = context;
         //this.question = question;
         //this.answers = answers;
         this.questionsList = questionsList;
-
+        this.showCorrectAnswers = showCorrectAnswers;
     }
 
     // Total number of things contained within the adapter
@@ -112,6 +114,17 @@ public class QuizTestItemAdapter extends BaseAdapter {
                 checkBox.setText(answer);
                 Log.d("QuizTestItemAdapter", "Answer: "+ot.getOdpvedi().get(i).toString());
                 checkBox.setChecked(ot.getOdpvedi().get(i).isSelectedAnswer());
+                if (showCorrectAnswers) {
+                    if (checkBox.isChecked() && ot.getOdpvedi().get(i).getOk() == 1) {
+                        checkBox.setBackgroundColor(Color.GREEN);
+                    } else if (checkBox.isChecked() && ot.getOdpvedi().get(i).getOk() == 0) {
+                        checkBox.setBackgroundColor(Color.RED);
+                    } else if (!checkBox.isChecked() && ot.getOdpvedi().get(i).getOk() == 1) {
+                        checkBox.setBackgroundColor(Color.GREEN);
+                    } else {
+                        checkBox.setBackgroundColor(Color.TRANSPARENT);
+                    }
+                }
                 checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -131,7 +144,6 @@ public class QuizTestItemAdapter extends BaseAdapter {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
                     }
                 });
                 //checkBox.setOnClickListener(new MyOnClickListener(checkBox, ot));
